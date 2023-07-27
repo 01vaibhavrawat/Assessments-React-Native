@@ -5,50 +5,53 @@ import { MonoText } from "../StyledText";
 import { Text, View } from "../Themed";
 
 import Colors from "@/constants/Colors";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function EditScreenInfo({ path }: { path: string }) {
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("@/assets/images/dhappaTool.svg")}
-      />
+    <ScrollView>
+      <View style={styles.container}>
+        <Image
+          style={styles.image}
+          source={require("@/assets/images/dhappaTool.svg")}
+        />
 
-      <Text style={styles.title}>SCIENCE OF PERFECTIONISM</Text>
-      <View style={styles.getStartedContainer}>
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)"
-        >
-          Open up the code for this screen:
-        </Text>
+        <Text style={styles.title}>SCIENCE OF PERFECTIONISM</Text>
+        <View style={styles.getStartedContainer}>
+          <Text
+            style={styles.getStartedText}
+            lightColor="rgba(0,0,0,0.8)"
+            darkColor="rgba(255,255,255,0.8)"
+          >
+            Open up the code for this screen:
+          </Text>
 
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)"
-        >
-          Change any of the text, save the file, and your app will automatically
-          update.
-        </Text>
+          <Text
+            style={styles.getStartedText}
+            lightColor="rgba(0,0,0,0.8)"
+            darkColor="rgba(255,255,255,0.8)"
+          >
+            Change any of the text, save the file, and your app will
+            automatically update.
+          </Text>
 
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)"
+          <Text
+            style={styles.getStartedText}
+            lightColor="rgba(0,0,0,0.8)"
+            darkColor="rgba(255,255,255,0.8)"
+          >
+            Change any of the text, save the file, and your app will
+            automatically update app will automatically.
+          </Text>
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => console.log("text")}
         >
-          Change any of the text, save the file, and your app will automatically
-          update app will automatically.
-        </Text>
+          <Text style={styles.buttonText}>Of course!</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => console.log("text")}
-      >
-        <Text style={styles.buttonText}>Of course!</Text>
-      </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -69,7 +72,6 @@ const styles = StyleSheet.create({
     lineHeight: 29,
     textAlign: "left",
     marginBottom: 10,
-    paddingLeft: 5,
   },
   helpContainer: {
     marginTop: 15,
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 23,
-    fontWeight: 700,
+    fontWeight: "700",
     marginBottom: 10,
   },
   container: {
