@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import { MonoText } from "../StyledText";
@@ -7,19 +7,30 @@ import { Text, View } from "../Themed";
 import Colors from "@/constants/Colors";
 import { ScrollView } from "react-native-gesture-handler";
 
+import ProgressLines from "@/components/ProgressLines";
+
 export default function EditScreenInfo({ path }: { path: string }) {
+  const [currentPage, setCurrentPage] = useState<number>(1);
   return (
-    <ScrollView>
+    <ScrollView style={styles.scrollView}>
+      <ProgressLines
+        pages={[
+          { name: "this" },
+          { name: "this 2" },
+          { name: "this 3" },
+          { name: "this 4" },
+        ]}
+        currentPage={currentPage}
+      ></ProgressLines>
       <View style={styles.container}>
         <Image
           style={styles.image}
           source={require("@/assets/images/dhappaTool.svg")}
         />
-
-        <Text style={styles.title}>SCIENCE OF PERFECTIONISM</Text>
-        <View style={styles.getStartedContainer}>
+        <View style={styles.bodyContainer}>
+          <Text style={styles.title}>Lorem ipsum dolor</Text>
           <Text
-            style={styles.getStartedText}
+            style={styles.bodyText}
             lightColor="rgba(0,0,0,0.8)"
             darkColor="rgba(255,255,255,0.8)"
           >
@@ -27,7 +38,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
           </Text>
 
           <Text
-            style={styles.getStartedText}
+            style={styles.bodyText}
             lightColor="rgba(0,0,0,0.8)"
             darkColor="rgba(255,255,255,0.8)"
           >
@@ -36,7 +47,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
           </Text>
 
           <Text
-            style={styles.getStartedText}
+            style={styles.bodyText}
             lightColor="rgba(0,0,0,0.8)"
             darkColor="rgba(255,255,255,0.8)"
           >
@@ -44,19 +55,19 @@ export default function EditScreenInfo({ path }: { path: string }) {
             automatically update app will automatically.
           </Text>
         </View>
+      </View>
         <TouchableOpacity
           style={styles.button}
           onPress={() => console.log("text")}
         >
           <Text style={styles.buttonText}>Of course!</Text>
         </TouchableOpacity>
-      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  getStartedContainer: {
+  bodyContainer: {
     alignItems: "center",
     marginHorizontal: 50,
   },
@@ -67,11 +78,13 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     paddingHorizontal: 4,
   },
-  getStartedText: {
-    fontSize: 25,
+  bodyText: {
+    fontSize: 20,
     lineHeight: 29,
     textAlign: "left",
     marginBottom: 10,
+    fontWeight: "500",
+    width: 300,
   },
   helpContainer: {
     marginTop: 15,
@@ -81,13 +94,18 @@ const styles = StyleSheet.create({
   helpLink: {
     paddingVertical: 15,
   },
+  scrollView: {
+    position:"relative"
+  },
   helpLinkText: {
     textAlign: "center",
   },
   title: {
+    textAlign: "left",
     fontSize: 23,
     fontWeight: "700",
-    marginBottom: 10,
+    marginBottom: 12,
+    width: 300,
   },
   container: {
     flex: 1,
@@ -101,6 +119,8 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: "black",
     marginVertical: 20,
+    position:"absolute",
+    bottom: 2,
   },
   buttonText: {
     color: "white",
@@ -108,8 +128,8 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   image: {
-    width: 300,
-    height: 170,
+    width: 280,
+    height: 150,
     marginBottom: 25,
     marginTop: 30,
   },
