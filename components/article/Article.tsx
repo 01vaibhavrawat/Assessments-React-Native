@@ -12,7 +12,7 @@ import ProgressLines from "@/components/ProgressLines";
 export default function EditScreenInfo({ path }: { path: string }) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   return (
-    <ScrollView style={styles.scrollView}>
+    <ScrollView contentContainerStyle={styles.scrollView}>
       <ProgressLines
         pages={[
           { name: "this" },
@@ -22,12 +22,12 @@ export default function EditScreenInfo({ path }: { path: string }) {
         ]}
         currentPage={currentPage}
       ></ProgressLines>
-      <View style={styles.container}>
+      <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" style={styles.container}>
         <Image
           style={styles.image}
           source={require("@/assets/images/dhappaTool.svg")}
         />
-        <View style={styles.bodyContainer}>
+        <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" style={styles.bodyContainer}>
           <Text style={styles.title}>Lorem ipsum dolor</Text>
           <Text
             style={styles.bodyText}
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   bodyContainer: {
     alignItems: "center",
     marginHorizontal: 50,
+    paddingBottom: 100,
   },
   homeScreenFilename: {
     marginVertical: 7,
@@ -95,7 +96,10 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   scrollView: {
-    position:"relative"
+    position:"relative",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center"
   },
   helpLinkText: {
     textAlign: "center",
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
   button: {
     height: 54,
     paddingVertical: 12,
-    paddingHorizontal: 117,
+    paddingHorizontal: 107,
     borderRadius: 50,
     backgroundColor: "black",
     marginVertical: 20,
