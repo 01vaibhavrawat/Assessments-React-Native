@@ -1,24 +1,30 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React from "react";
+import { StyleSheet } from "react-native";
 
-import { ExternalLink } from './ExternalLink';
-import { MonoText } from './StyledText';
-import { Text, View } from './Themed';
+import { ExternalLink } from "./ExternalLink";
+import { MonoText } from "./StyledText";
+import { Text, View } from "./Themed";
 
-import Colors from '@/constants/Colors';
+import Colors from "@/constants/Colors";
 
-export default function ProgressLines({ pages, currentPage }: { pages: Array<{name: string}>, currentPage: number }) {
+export default function ProgressLines({
+  pages,
+  currentPage,
+}: {
+  pages: Array<{ name: string }>;
+  currentPage: number;
+}) {
   return (
     <View style={styles.container}>
-          <View style={styles.container}>
-            {pages.map((page, i) => {
-              const barStyle = {
-                ...styles.barTwo,
-                backgroundColor: i === 0 ? "black" : "gray",
-              };
-              return <View key={page.name} style={barStyle}></View>;
-            })}
-            </View>
+      <View style={styles.container}>
+        {pages.map((page, i) => {
+          const barStyle = {
+            ...styles.barTwo,
+            backgroundColor: currentPage === i ? "black" : "gray",
+          };
+          return <View key={page.name} style={barStyle}></View>;
+        })}
+      </View>
     </View>
   );
 }
@@ -31,15 +37,14 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
     display: "flex",
-    flexDirection:"row",
+    flexDirection: "row",
     gap: 15,
-    justifyContent:"center"
+    justifyContent: "center",
   },
   barTwo: {
     height: 5,
     width: 65,
-    backgroundColor:"gray",
+    backgroundColor: "gray",
     borderRadius: 20,
-  }
-
+  },
 });

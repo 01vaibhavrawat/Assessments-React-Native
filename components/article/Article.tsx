@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Dimensions } from "react-native";
 
 import { MonoText } from "../StyledText";
 import { Text, View } from "../Themed";
@@ -11,57 +12,70 @@ import ProgressLines from "@/components/ProgressLines";
 
 export default function EditScreenInfo({ path }: { path: string }) {
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const scrollViewRef = useRef<ScrollView | null>(null);
+  const pages = [
+    { name: "this" },
+    { name: "this 2" },
+    { name: "this 3" },
+    { name: "this 4" },
+  ];
+  const handleNextPage = () => {
+    const nextPage = currentPage + 1;
+    if (nextPage < pages.length) {
+      setCurrentPage(nextPage);
+      scrollViewRef.current?.scrollTo({
+        x: Dimensions.get("window").width * nextPage,
+        animated: true,
+      });
+    }
+  };
+
+  const handleScroll = (event: any) => {
+    const contentOffsetX = event.nativeEvent.contentOffset.x;
+    const newPage = Math.round(contentOffsetX / Dimensions.get("window").width);
+    setCurrentPage(newPage);
+  };
+
   return (
-    <ScrollView contentContainerStyle={styles.scrollView}>
-      <ProgressLines
-        pages={[
-          { name: "this" },
-          { name: "this 2" },
-          { name: "this 3" },
-          { name: "this 4" },
-        ]}
-        currentPage={currentPage}
-      ></ProgressLines>
-      <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" style={styles.container}>
+    <ScrollView
+      ref={scrollViewRef}
+      contentContainerStyle={styles.scrollView}
+      showsHorizontalScrollIndicator={false}
+      onScroll={handleScroll}
+      scrollEventThrottle={16}
+    >
+      <ProgressLines pages={pages} currentPage={currentPage}></ProgressLines>
+      <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require("@/assets/images/dhappaTool.svg")}
+          source={require("@/assets/images/procrastination.jpg")}
         />
-        <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" style={styles.bodyContainer}>
+        <View style={styles.bodyContainer}>
           <Text style={styles.title}>Lorem ipsum dolor</Text>
-          <Text
-            style={styles.bodyText}
-            lightColor="rgba(0,0,0,0.8)"
-            darkColor="rgba(255,255,255,0.8)"
-          >
-            Open up the code for this screen:
-          </Text>
+          <Text style={styles.bodyText}>Open up the code for this screen:</Text>
 
-          <Text
-            style={styles.bodyText}
-            lightColor="rgba(0,0,0,0.8)"
-            darkColor="rgba(255,255,255,0.8)"
-          >
+          <Text style={styles.bodyText}>
             Change any of the text, save the file, and your app will
             automatically update.
           </Text>
 
-          <Text
-            style={styles.bodyText}
-            lightColor="rgba(0,0,0,0.8)"
-            darkColor="rgba(255,255,255,0.8)"
-          >
+          <Text style={styles.bodyText}>
+            Change any of the text, save the file, and your app will
+            automatically update app will automatically.
+          </Text>
+          <Text style={styles.bodyText}>
             Change any of the text, save the file, and your app will
             automatically update app will automatically.
           </Text>
         </View>
-      </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => console.log("text")}
+          onPress={handleNextPage}
         >
           <Text style={styles.buttonText}>Of course!</Text>
         </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
@@ -70,7 +84,6 @@ const styles = StyleSheet.create({
   bodyContainer: {
     alignItems: "center",
     marginHorizontal: 50,
-    paddingBottom: 100,
   },
   homeScreenFilename: {
     marginVertical: 7,
@@ -96,10 +109,12 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   scrollView: {
-    position:"relative",
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center"
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 100,
+    backgroundColor: "#fff",
   },
   helpLinkText: {
     textAlign: "center",
@@ -123,8 +138,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: "black",
     marginVertical: 20,
-    position:"absolute",
-    bottom: 2,
   },
   buttonText: {
     color: "white",
@@ -136,5 +149,6 @@ const styles = StyleSheet.create({
     height: 150,
     marginBottom: 25,
     marginTop: 30,
+    resizeMode: "cover",
   },
 });

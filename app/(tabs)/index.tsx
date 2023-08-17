@@ -12,18 +12,24 @@ const Stack = createStackNavigator();
 
 export default function TabOneScreen() {
   return (
-      <NavigationContainer independent={true}>
-        <Stack.Navigator>
-          <Stack.Screen name="SlidingPages" component={SlidingPages} />
-        </Stack.Navigator>
-      </NavigationContainer>
-      );
-      {/* <Article path="typescript" /> */}
-      {/* <Text style={styles.title}>Tab One</Text>
+    <NavigationContainer independent={true}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="SlidingPages" component={SlidingPages} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+  {
+    /* <Article path="typescript" /> */
+  }
+  {
+    /* <Text style={styles.title}>Tab One</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" /> */}
-
-  
+      <EditScreenInfo path="app/(tabs)/index.tsx" /> */
+  }
 }
 
 const styles = StyleSheet.create({
