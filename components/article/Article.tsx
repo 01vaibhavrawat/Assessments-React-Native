@@ -5,7 +5,6 @@ import { Dimensions } from "react-native";
 import { MonoText } from "../StyledText";
 import { Text, View } from "../Themed";
 
-import Colors from "@/constants/Colors";
 import { ScrollView } from "react-native-gesture-handler";
 
 import ProgressLines from "@/components/ProgressLines";
@@ -21,6 +20,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
     { name: "this 4" },
   ];
   const handleNextPage = () => {
+    console.log("i am getting logged")
     const nextPage = currentPage + 1;
     if (nextPage < pages.length) {
       setCurrentPage(nextPage);
@@ -33,19 +33,23 @@ export default function EditScreenInfo({ path }: { path: string }) {
 
   const handleScroll = (event: any) => {
     const contentOffsetX = event.nativeEvent.contentOffset.x;
+    console.log("contentOffset-->", contentOffsetX)
     const newPage = Math.round(contentOffsetX / Dimensions.get("window").width);
     setCurrentPage(newPage);
   };
 
   return (
+    <View>
+    <ProgressLines pages={pages} currentPage={currentPage}></ProgressLines>
     <ScrollView
       ref={scrollViewRef}
+      horizontal
+      pagingEnabled
       contentContainerStyle={styles.scrollView}
       showsHorizontalScrollIndicator={false}
       onScroll={handleScroll}
       scrollEventThrottle={16}
     >
-      <ProgressLines pages={pages} currentPage={currentPage}></ProgressLines>
       <View style={styles.container}>
         <Image
           style={styles.image}
@@ -77,6 +81,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
         </TouchableOpacity>
       </View>
     </ScrollView>
+    </View>
   );
 }
 
