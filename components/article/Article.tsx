@@ -43,7 +43,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
     <ProgressLines pages={pages} currentPage={currentPage}></ProgressLines>
     <ScrollView
       ref={scrollViewRef}
-      horizontal
+      
       pagingEnabled
       contentContainerStyle={styles.scrollView}
       showsHorizontalScrollIndicator={false}
@@ -64,6 +64,22 @@ export default function EditScreenInfo({ path }: { path: string }) {
             automatically update.
           </Text>
 
+          <Text style={styles.bodyText}>
+            Change any of the text, save the file, and your app will
+            automatically update app will automatically.
+          </Text>
+          <Text style={styles.bodyText}>
+            Change any of the text, save the file, and your app will
+            automatically update app will automatically.
+          </Text>
+          <Text style={styles.bodyText}>
+            Change any of the text, save the file, and your app will
+            automatically update app will automatically.
+          </Text>
+          <Text style={styles.bodyText}>
+            Change any of the text, save the file, and your app will
+            automatically update app will automatically.
+          </Text>
           <Text style={styles.bodyText}>
             Change any of the text, save the file, and your app will
             automatically update app will automatically.

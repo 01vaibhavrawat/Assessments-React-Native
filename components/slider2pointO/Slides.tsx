@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import Article from "../article/Article";
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface ListItemProps {
   item: { name: string }; 
@@ -10,9 +12,12 @@ const screenWidth = Dimensions.get('window').width;
 
 const Slide: React.FC<ListItemProps> = ({ item }) => {
   return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{item.name}</Text>
-      </View>
+    <ScrollView>
+    <Article path={"string required"} />
+    </ScrollView>
+      // <View style={styles.container}>
+      //   <Text style={styles.text}>{item.name}</Text>
+      // </View>
   );
 };
 
