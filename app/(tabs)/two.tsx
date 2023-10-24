@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, Image } from 'react-native';
 
 const HomePage: React.FC = () => {
-  // Assuming the user's current day is 5, you can replace this with dynamic data
   const currentDay = 5;
 
   return (
@@ -18,13 +17,17 @@ const HomePage: React.FC = () => {
           <Text style={styles.dayText}>Day {currentDay}</Text>
         </View>
 
-        <TouchableOpacity style={styles.studyButton}>
-          <Text style={styles.buttonText}>Complete Daily Study</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.studyButton}>
+            <Image source={require('@/assets/images/procrastination.jpg')} style={styles.buttonImage} />
+            <Text style={styles.buttonText}>Complete Daily Study</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity style={styles.quizButton}>
-          <Text style={styles.buttonText}>Complete Daily Quiz</Text>
-        </TouchableOpacity>
+          {/* <TouchableOpacity style={styles.quizButton}>
+            <Image source={require('@/assets/images/procrastination.jpg')} style={styles.buttonImage} />
+            <Text style={styles.buttonText}>Complete Daily Quiz</Text>
+          </TouchableOpacity>
 
         <View style={styles.dayNavigation}>
           <TouchableOpacity style={styles.navigationButton}>
@@ -33,7 +36,7 @@ const HomePage: React.FC = () => {
           <TouchableOpacity style={styles.navigationButton}>
             <Text style={styles.navigationButtonText}>Next Day</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </ImageBackground>
   );
@@ -48,54 +51,66 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Slightly more opaque background
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
     marginBottom: 32,
   },
   header: {
     alignItems: 'center',
+    marginBottom: 16,
   },
   headerText: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
     color: 'white',
-    marginBottom: 8,
   },
   dayText: {
-    fontSize: 18,
+    fontSize: 20,
     color: 'white',
-    marginBottom: 32,
+  },
+  buttonContainer: {
+    width: '80%',
   },
   studyButton: {
-    backgroundColor: '#3498db', // Button color
+    backgroundColor: '#3498db',
     padding: 16,
-    borderRadius: 8,
+    borderRadius: 12,
     marginBottom: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   quizButton: {
-    backgroundColor: '#27ae60', // Button color
+    backgroundColor: '#27ae60',
     padding: 16,
-    borderRadius: 8,
+    borderRadius: 12,
     marginBottom: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   buttonText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  buttonImage: {
+    width: 30,
+    height: 30,
+    marginRight: 12,
   },
   dayNavigation: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '80%',
   },
   navigationButton: {
-    backgroundColor: '#e74c3c', // Navigation button color
+    backgroundColor: '#e74c3c',
     padding: 16,
-    borderRadius: 8,
-    width: 140,
+    borderRadius: 12,
+    width: '45%',
   },
   navigationButtonText: {
     color: 'white',

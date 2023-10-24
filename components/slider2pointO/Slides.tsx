@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, SafeAreaView } from 'react-native';
 import Article from "../article/Article";
+import QuizPage from '../quiz/Quiz';
 import { ScrollView } from 'react-native-gesture-handler';
 
 interface ListItemProps {
@@ -12,9 +13,12 @@ const screenWidth = Dimensions.get('window').width;
 
 const Slide: React.FC<ListItemProps> = ({ item }) => {
   return (
+    <SafeAreaView> 
     <ScrollView>
-    <Article path={"string required"} />
+      <QuizPage />
+    {/* <Article path={"string required"} /> */}
     </ScrollView>
+    </SafeAreaView>
       // <View style={styles.container}>
       //   <Text style={styles.text}>{item.name}</Text>
       // </View>
