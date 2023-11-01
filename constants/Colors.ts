@@ -16,4 +16,17 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
   },
+  button: {
+    height: 54,
+    paddingVertical: 12,
+    paddingHorizontal: 50,
+    borderRadius: 70,
+    backgroundColor: "black",
+    marginVertical: 20,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 21,
+    fontWeight: "500",
+  },
 };
